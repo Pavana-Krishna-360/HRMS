@@ -1,6 +1,6 @@
 # Dayflow - Human Resource Management System (Architecture Blueprint)
 
-This document serves as the single source of truth for the project architecture and work breakdown for the 8-hour hackathon. 
+The current document serves as a source of truth for the project architecture and work breakdown for the 8-hour hackathon. 
 
 ---
 
