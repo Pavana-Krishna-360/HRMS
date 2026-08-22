@@ -1,24 +1,38 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { 
   Briefcase, 
   LayoutDashboard, 
   User, 
   Clock, 
   Calendar, 
-  DollarSign, 
+  DollarSign,
+  Users,
   LogOut,
   X
 } from 'lucide-react';
 
 const Sidebar = ({ isOpen, setIsOpen }) => {
-  const navItems = [
+  const location = useLocation();
+  const isHR = location.pathname.startsWith('/hr');
+
+  const employeeNavItems = [
     { name: 'Dashboard', path: '/employee/dashboard', icon: LayoutDashboard },
     { name: 'My Profile', path: '/employee/profile', icon: User },
     { name: 'Attendance', path: '/employee/attendance', icon: Clock },
     { name: 'Leave', path: '/employee/leave', icon: Calendar },
     { name: 'Payroll', path: '/employee/payroll', icon: DollarSign },
   ];
+
+  const hrNavItems = [
+    { name: 'Dashboard', path: '/hr/dashboard', icon: LayoutDashboard },
+    { name: 'Employees', path: '/hr/employees', icon: Users },
+    { name: 'Attendance', path: '/hr/attendance', icon: Clock },
+    { name: 'Leave Requests', path: '/hr/leave', icon: Calendar },
+    { name: 'Payroll', path: '/hr/payroll', icon: DollarSign },
+  ];
+
+  const navItems = isHR ? hrNavItems : employeeNavItems;
 
   return (
     <>
@@ -50,6 +64,13 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
           >
             <X className="w-6 h-6" />
           </button>
+        </div>
+
+        {/* Role Badge */}
+        <div className="px-6 py-3 border-b border-slate-100 bg-slate-50">
+          <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+            {isHR ? 'HR Portal' : 'Employee Portal'}
+          </span>
         </div>
 
         {/* Navigation */}
